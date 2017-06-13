@@ -6,87 +6,98 @@
 
 <?php $db = new PDO('pgsql:host=localhost;user=postgres;dbname=postgres');
 
-$statement = $db->prepare('select * from parcours where ID=?');
+$statement = $db->prepare('select parcours.*, photos.* left join photos on parcours.id = photos.parcours_id where parcours.id=?');
 
 $statement->execute([$_GET['id']]); 
+
 
 foreach($statement->fetchAll() as $row ) {?>
 
 
-<div class="content">
-	<!--Left Content - Info-->
-	<div class="left-content">
+
+<div class="top-content">
 		<h3><?php echo $row['name'];?></h3>
+	</div> <!--End top-content-->
+	<div class="middle-content">
 		<table>
 			<tr>
-				<th>Adresse</th>
-				<td class="adresse"><?php echo $row['adresse'];?><br><?php echo $row['plz'];?> <?php echo $row['ort'];?></td>
+				<td colspan="2"><span><?php echo htmlentities($row['adresse']);?><br><?php echo htmlentities($row['plz']);?> <?php echo htmlentities($row['ort']);?></span></td>
 			</tr>
 			<tr>
-				<th>Telefon-Nr</th>
-				<td>+43 (0)<?php echo $row['telefon_nr'];?></td>
+				<th>Telefon-Nr.</th>
+				<td>+43 <?php echo htmlentities($row['telefon_nr']);?></td>
 			</tr>
 			<tr>
 				<th>Website</th>
-				<td><?php echo'<a href="http://www.'.$row['website'].'" target="blank">';?><i class="fa fa-globe" aria-hidden="true"></i></a> <?php if (!empty($row['facebook'])) { echo '<a href="https://www.facebook.com/'.$row['facebook'].'" target="blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>';} else {}?></td>
+				<td><?php echo'<a href="http://www.' .htmlentities($row['website']).'" target="blank">www.'.htmlentities($row['website']).'</a>';?></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td colspan="2"><h4>Öffnungszeiten</h4></td>
+				<td></td>
 			</tr>
 			<tr>
-				<th colspan="2">Öffnungszeiten</th>
+				<th>Parcours</th>
+				<td><?php echo htmlentities($row['oeffnungszeiten_parcours']); ?></td>
 			</tr>
 			<tr>
-				<td class="th">Parcours</td>
-				<td><?php echo $row['oeffnungszeiten_parcours']; ?></td>
+				<th>Verleih / Shop</th>
+				<td><?php echo htmlentities($row['oeffnungszeiten_verleih']); ?></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td colspan="2"><h4>Preise</h4></td>
+				<td></td>
 			</tr>
 			<tr>
-				<td class="th">Verleih/Shop</td>
-				<td><?php echo $row['oeffnungszeiten_verleih']; ?></td>
+				<th>Parcours</th>
+				<td><?php echo htmlentities($row['parcours_kosten_er']); ?>,- EUR</td>
 			</tr>
+				<?php if(($row['verleih']) == 'true') {?>
 			<tr>
-				<th colspan="2">Preise <!--<p style="text-align: right"><i class="fa fa-info-circle" aria-hidden="true"></i></p>--></th>
-			</tr>
-			<tr>
-				<td class="th">Parcours</td>
-				<td>Erwachsene <span>ab <?php echo $row['parcours_kosten_er'];?>,- EUR</span><br>
-					Jugend <span>ab <?php echo $row['parcours_kosten_ju'];?>,- EUR</span></td>
-			</tr>
-			<?php if(($row['verleih']) == 'true') {?>
-			<tr>
-				<td class="th">Verleihausrüstung</td>
-				<td>Erwachsene <span><?php echo $row['verleih_kosten_er'];?>,- EUR</span><br>
-					Jugend <span><?php echo $row['verleih_kosten_ju'];?>,- EUR</span></td>
+				<th>Verleihausrüstung</th>
+				<td>Erwachsene <?php echo htmlentities($row['verleih_kosten_er']);?>,- EUR<br>
+					Jugend <?php echo htmlentities($row['verleih_kosten_ju']);?>,- EUR</td>
 			</tr>
 			<?php } else { ?>
 				<tr><td></td>
 					<td>Keine Leihausrüstung!</td></tr> <?php } ?>
-			<tr>
-				<td colspan="2" class="info"><a href="http://www.bogensport-zentrum.at/bogensport/site/content/ohne_material/preise" target="blank">Mehr Infos zu den Preisen</a>
-				</td>
-			</tr>
-			<tr>
-				<th colspan ="2">Parcoursinfo</th>
-			</tr>
-
-			<!--<tr>
-				<td colspan ="2">Das Bogensportzentrum in Kirchschlag bietet im Breitensteiner Wald 3 verschiedene Parcours an:<br>
-					<ul>
-						<li>Blauer Parcours mit 20 Stationen - Zeitaufwand ca. 1,5 Stunden</li>
-						<li>Roter Parcours mit 28 Stationen - Zeitaufwand ca. 2 Stunden</li>
-						<li>Gelber Parours mit 40 Stationen - Zeitaufwand ca. 3,5 Stunden</li>
-					</ul>
-						<p>zudem gibt es einen Eventparcours mit 12 Stationen, welcher exklusiv für große Gruppen (z. B.: Firmenevents) reserviert werden kann.</p></td>
-			</tr>
-			<tr>
-				<td colspan ="2"><p>Ein gut ausgestatteter <span>Shop</span> wartet für neue Bogensport-Begeisterte sowie alteingessesene Schützen mit allerlei zum Thema Bogenschießen.<br>Gleich darüber befindet sich die <span>Bogensporthalle</span>, in der man auch bei Schlechtwetter die Pfeile sausen lassen kann.</p></td>-->
 			</tr>
 		</table>
-	</div>
 
-	<!--Right Content - Photos-->
-	<div class="right-content">
-		<!--<img src="assets/img/feel_the_passion_KOMPPLETT.jpg" alt="bogensportzentrum breitenstein logo">-->
-	</div>
+	</div><!--End middle-content-->
+	<div class="bottom-content">
+		<div class="photo">
+			<?php echo '<img src="assets/pic/parcours/' .$row['photo_name']. '">';?>
+		</div>
+	</div><!--End bottom-content-->
 	
-</div>
+	</div><!--End left-content-->
+	<div class="right-content">
+		<div class="top-content">
+		</div>
+		<div id="map">
+		</div>
+			<script>
+     			function initMap() {
+        			var uluru = {lat: <?php echo htmlentities($row['lat']);?>, lng: <?php echo htmlentities($row['lng']);?>};
+        			var map = new google.maps.Map(document.getElementById('map'), {
+          				zoom: 10,
+          				center: uluru
+       				});
+       				var marker = new google.maps.Marker({
+          			position: uluru,
+          			map: map
+       				});
+      			}
+  			</script> 
+  			<?php $key = 'AIzaSyBsBa8cV_0PITCmCqa25Znf1AriLKiv5xk';?>
+  			<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo $key;?>&callback=initMap"></script>
 
-<?php } ?>
+		
+	</div>
+	<?php } ?>
+
 <?php require_once('footer.php'); ?>
