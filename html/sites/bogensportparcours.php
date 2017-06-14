@@ -1,7 +1,7 @@
 <?php
 	$title = "Bogensportparcours";
 
-	require_once('header.php');
+	require_once('../includes/header.php');
 
 	$db = new PDO('pgsql:host=localhost;user=postgres;dbname=postgres');
 
@@ -38,4 +38,4 @@
 	</div>
 </div><!--End left content - start in header-->
 
-<?php require_once('footer.php'); ?>
+<?php require_once('../includes/footer.php'); ?>

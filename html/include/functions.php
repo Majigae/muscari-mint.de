@@ -5,7 +5,7 @@
 	function the_title() {
 		global $title;
 
-		echo $title;
+		echo .htmlentities($title).;
 	}
 
 ?>

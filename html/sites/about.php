@@ -2,7 +2,7 @@
 	$title = "About muscari-mint";
 ?>
 
-<?php require_once('header.php'); ?>
+<?php require_once('../includes/header.php'); ?>
 
 	<div class="top-content">
 		<h3>About</h3>
@@ -36,4 +36,4 @@
 	</div>
 </div><!--End right content-->
 
-<?php require_once('footer.php'); ?>
+<?php require_once('../includes/footer.php'); ?>

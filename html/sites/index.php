@@ -1,6 +1,6 @@
 <?php
 	$title = "muscari-mint";
-	require_once('header.php'); 
+	require_once('../includes/header.php'); 
 ?>
 
 	<div class="top-content">
@@ -10,4 +10,4 @@
 
 
 
-<?php require_once('footer.php'); ?>
+<?php require_once('..includes/footer.php'); ?>

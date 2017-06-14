@@ -1,7 +1,7 @@
 <?php
 	$title = "Parcoursdetails";
 
-	require_once('header.php');
+	require_once('../includes/header.php');
 
 	$db = new PDO('pgsql:host=localhost;user=postgres;dbname=postgres');
 
@@ -14,20 +14,20 @@
 
 
 	<div class="top-content">
-		<h3><?php echo $row['name'];?></h3>
+		<h3><?php echo .htmlentities($row['name']).;?></h3>
 	</div>
 
 	<div class="middle-content">
 		<table>
 			<tr>
 				<td colspan="2">
-					<span><?php echo htmlentities($row['adresse']);?><br><?php echo htmlentities($row['plz']);?> <?php echo htmlentities($row['ort']);?></span>
+					<span><?php echo .htmlentities($row['adresse']).;?><br><?php echo .htmlentities($row['plz']).;?> <?php echo .htmlentities($row['ort']).;?></span>
 				</td>
 			</tr>
 			<tr>
 				<th>Telefon-Nr.</th>
 				<td>
-					+43 <?php echo htmlentities($row['telefon_nr']);?>
+					+43 <?php echo .htmlentities($row['telefon_nr']).;?>
 				</td>
 			</tr>
 			<tr>
@@ -43,13 +43,13 @@
 			<tr>
 				<th>Parcours</th>
 				<td>
-					<?php echo htmlentities($row['oeffnungszeiten_parcours']); ?>
+					<?php echo .htmlentities($row['oeffnungszeiten_parcours']).; ?>
 				</td>
 			</tr>
 			<tr>
 				<th>Verleih / Shop</th>
 				<td>
-					<?php echo htmlentities($row['oeffnungszeiten_verleih']); ?>
+					<?php echo .htmlentities($row['oeffnungszeiten_verleih']).; ?>
 				</td>
 			</tr>
 			<tr>
@@ -59,15 +59,15 @@
 			<tr>
 				<th>Parcours</th>
 				<td>
-					<?php echo htmlentities($row['parcours_kosten_er']); ?>,- EUR
+					<?php echo .htmlentities($row['parcours_kosten_er']).; ?>,- EUR
 				</td>
 			</tr>
 			<?php if(($row['verleih']) == 'true') {?>
 				<tr>
 					<th>Verleihausrüstung</th>
 					<td>Erwachsene
-						<?php echo htmlentities($row['verleih_kosten_er']);?>,- EUR<br>
-						Jugend <?php echo htmlentities($row['verleih_kosten_ju']);?>,- EUR
+						<?php echo .htmlentities($row['verleih_kosten_er']).;?>,- EUR<br>
+						Jugend <?php echo .htmlentities($row['verleih_kosten_ju']).;?>,- EUR
 					</td>
 				</tr>
 				<?php } else { ?>
@@ -86,7 +86,7 @@
 		<?php $photo_statement->execute([$_GET['id']]); 
 			foreach ($photo_statement->fetchAll() as $photo) {?>
 				<div class="photo">
-					<?php echo '<img src="assets/pic/parcours/' .$photo['photo_name']. '.jpg">';?>
+					<?php echo '<img src="assets/pic/parcours/' .htmlentities($photo['photo_name']). '.jpg">';?>
 				</div>
 		<?php }  ?>
 	</div>
@@ -94,7 +94,7 @@
 		<script>
      		function initMap() {
         		var uluru = {
-        				lat: <?php echo htmlentities($row['lat']);?>, lng: <?php echo htmlentities($row['lng']);?>
+        				lat: <?php echo .htmlentities($row['lat']).;?>, lng: <?php echo .htmlentities($row['lng']).;?>
         		};
         		var map = new google.maps.Map(document.getElementById('map'), {
           			zoom: 10,
