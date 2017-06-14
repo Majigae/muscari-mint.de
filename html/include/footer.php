@@ -1,4 +1,4 @@
-	<!--Content End--></div>
+<!--Content End--></div>
 
 	<div class="default-footer">
 		<ul>
@@ -6,5 +6,4 @@
 			<li><a href="">Impressum</a></li>
 		</ul>
 	</div>
-</body>
-</html>
+</body></html>

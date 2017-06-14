@@ -6,8 +6,8 @@
 
 	<div class="top-content">
 		<h3>About</h3>
-		
 	</div>
+
 	<div class="middle-content">
 		<div id="mobile-kontakt">
 			<h3>Kontakt</h3>
@@ -20,7 +20,9 @@
 			</form>
 		</div>
 	</div>
-</div>
+
+</div><!--End left content - start in header-->
+
 <div class="right-content">
 	<div class="top-content">
 		<h3>Kontakt</h3>
@@ -32,5 +34,6 @@
 			<input type="submit" name="submit" value="Senden">
 		</form>
 	</div>
-</div>
+</div><!--End right content-->
+
 <?php require_once('footer.php'); ?>

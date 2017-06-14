@@ -18,7 +18,6 @@
 		<!--Google JQuery-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" async defer src="assets/js/script.js"></script>
-
 </head>
 <body>
 	<div class="container">
@@ -27,7 +26,10 @@
 				<li><a href="index.php">Home</a></li>
 				<li><a href="bogensportparcours.php">Bogensportparcours</a></li>
 				<li><a href="about.php">About</a></li>
-				<li><input id="suchfeld" type="text" name="suchfeld" placeholder="Parcours suchen"><input id="search" type="submit" name="search-button" value="GO"></li>
+				<li>
+					<input id="suchfeld" type="text" name="suchfeld" placeholder="Parcours suchen">
+					<input id="search" type="submit" name="search-button" value="GO">
+				</li>
 			</ul>
 		</div>
 

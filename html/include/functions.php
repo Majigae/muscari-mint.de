@@ -8,6 +8,4 @@
 		echo $title;
 	}
 
-	function home_url() {
-		echo ABS_URL;
-	}
+?>
