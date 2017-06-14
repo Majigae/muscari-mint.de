@@ -1,0 +1,267 @@
+//Colors:
+$font: #070904
+$lightgreen: #568D6D
+$whitegreen: #e0e4d9
+$darkgreen: #171d0c
+$green: #738554
+$rgba-green: rgba(115, 133, 84, 0.5)
+$white: #fff
+$rgba-white: rgba(255, 255, 255, 0.5)
+$durchsichtig: rgba(255, 255, 255, 0)
+$brown: #9C876B
+$blue: #3A84DF
+
+html, body
+	margin: 0
+	padding: 0
+	border: 0
+
+body
+	background-color: $whitegreen
+	background-image: url("../pic/wald-hintergrund.jpg")
+	background-size: 100%
+	background-repeat: no-repeat
+	background-attachment: fixed
+	font-size: 100%
+	font-family: 'Roboto', 'Arial', sans-serif
+	color: $font
+	display: flex
+	min-height: 100vh
+	flex-flow: row wrap
+	justify-content: center
+	position: relative
+	//overflow-y: hidden
+
+	//------TYPO------//
+	h3
+		font-family: 'Sorts Mill Goudy', serif
+		font-size: 200%
+		letter-spacing: 2px
+		margin: 5px 0 25px 15px
+
+	h4
+		letter-spacing: 2px
+		font-size: 120%
+		margin: 5px 0
+		font-family: 'Sorts Mill Goudy', serif
+		color: $white
+	h4:before
+		content: '→ '
+
+	a 
+		text-decoration: none
+		color: $font
+
+	a:hover
+		color: $brown
+
+	p 
+		padding: 0
+
+	form
+		margin: 0 10px
+	
+	input, textarea 
+		background-color: $durchsichtig
+		border: none
+		font-family: inherit
+		font-size: 95%
+		margin: 5px 0
+		padding: 5px 7px
+		background-color: $rgba-white
+		width: 250px
+
+	#suchfeld
+		text-align: right
+		border: 1px solid $brown
+		border-radius: 20px
+		width: auto
+		font-size: 85%
+
+	textarea
+		resize: none
+		height: 150px
+
+	input[type="submit"]
+		cursor: pointer
+		width: 264px
+
+	input[type="submit"]:hover
+		background-color: $rgba-green
+		color: $white
+
+
+
+
+	//Content-Container
+	.container
+		max-width: 1700px
+		flex: 1 100%
+		//min-height: 95vh
+		margin: 0 7% 0 7%
+		display: flex
+		flex-flow: row wrap
+		justify-content: center
+		background-color: $whitegreen
+
+		.default-nav
+			flex: 1 100%
+			min-height: 52px
+			align-self: flex-start
+			//height: auto
+			margin: 0
+			background-color: $white
+
+
+			ul
+				text-align: right
+
+				li 
+					list-style-type: none
+					display: inline-block
+					margin: 0 20px
+					letter-spacing: 2px
+					font-size: 110%
+					position: relative
+			
+
+		//Content-Left für Info
+		.left-content
+			flex: 3 1 0%
+			background-color: $rgba-green
+			min-height: 92.2vh
+			max-height: 92.2vh
+			display: flex
+			flex-flow: column
+
+			img
+				max-height: inherit
+				width: auto
+
+
+			table
+				margin: 0 0 2% 0
+				padding: 0 0 0 5%
+				td, th
+					text-align: left
+					padding: 10px
+
+				th 
+					max-width: 150px
+				a 
+					color: $green
+
+				a:hover
+					color: $white
+
+
+			.top-content
+				flex: 3.5 1 0%
+				padding: 20px	
+
+
+			//für Inhalt
+			.middle-content
+				flex: 1 100%
+				max-height: 87vh
+				overflow-y: scroll	
+				//padding: 0 0 20px 0
+				//display: flex
+				//flex-flow: row wrap
+
+			//Content-Left für Fotos
+			.bottom-content
+				flex: 1 100%
+				width: 100%
+				max-height: 170px
+				align-self: flex-end
+				border-top: 1px solid $white
+				//z-index: 83
+				//text-align: center
+				display: flex
+				flex-flow: row wrap
+				justify-content: center
+
+				.photo
+					flex: 1 100%
+					//display: inline-block
+					max-height: 169px
+					min-height: 169px
+					max-width: 169px
+					//max-width: 174.5px
+					//min-width: 174.5px
+					margin: 0
+					outline: 1px solid $white
+					overflow: hidden
+					transition: transform 0.9s
+					
+
+					img 
+						height: 100%
+						width: auto
+
+				.photo:hover
+					transform: scale(2)
+
+				//Media for Photo
+				@media screen and (max-width: 800px)
+					max-height: 100%
+					max-width: auto
+
+
+		
+		.right-content
+			flex: 1 1 0%
+			min-height: 92.2vh
+			border-left: 2px solid $white
+			//background-color: $lightgreen
+			//max-width: 450px
+
+			display: flex
+			flex-flow: column
+			align-items: center
+			justify-content: center
+				//Content-Right für Map
+			.top-content, #map
+				flex: 1 100%
+				max-height: 425px
+				min-height: 425px
+				min-width: 425px
+				max-width: 425px
+				overflow: hidden
+
+				img
+					max-height: inherit
+					width: auto
+
+			//Content-Right für Foto
+			#map
+				border-bottom: 1px solid $white
+				
+
+
+	.default-footer
+		//align-self: flex-end
+		//flex: 1 100%
+		width: 100%
+		position: fixed
+		bottom: 0
+		left: 0
+		max-height: 50px
+		margin: 0
+		padding: 2px
+		background-color: $brown
+		text-align: center
+		font-size: 90%
+		//z-index: 80
+
+		li 
+			list-style-type: none
+			display: inline-block
+			margin: 0 10px
+
+			a:hover
+				color: $white
+					
+
+
