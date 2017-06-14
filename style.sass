@@ -26,11 +26,14 @@ body
 	font-family: 'Roboto', 'Arial', sans-serif
 	color: $font
 	display: flex
-	min-height: 100vh
+	min-height: 100%
 	flex-flow: row wrap
 	justify-content: center
 	position: relative
 	//overflow-y: hidden
+
+	@media screen and (max-width: 975px)
+		background-image: none
 
 	//------TYPO------//
 	h3
@@ -78,6 +81,10 @@ body
 		width: auto
 		font-size: 85%
 
+		@media screen and (max-width: 975px)
+			text-align: center
+			margin: 0 0 0 35px
+
 	textarea
 		resize: none
 		height: 150px
@@ -90,8 +97,18 @@ body
 		background-color: $rgba-green
 		color: $white
 
+	#search
+		cursor: pointer
+		width: 30px
+		height: 30px
+		border-radius: 50%
+		margin: 0 0 0 5px
+		padding: 0
+		font-size: 80%
+		background-color: $rgba-green
 
-
+	#search:hover
+		color: $white
 
 	//Content-Container
 	.container
@@ -123,14 +140,43 @@ body
 					letter-spacing: 2px
 					font-size: 110%
 					position: relative
+
+			@media screen and (max-width: 975px)
+				display: none
+
+		.mobile-nav, #mobile-nav-button
+			flex: 1 100%
+			align-self: flex-start
+			//height: auto
+			margin: 0
+			background-color: $white
+			display: none
+
+			ul
+				text-align: center
+
+				li 
+					list-style-type: none
+					display: block
+					margin: 7px 0
+					letter-spacing: 2px
+					font-size: 110%
+					position: relative
+
+		#mobile-nav-button
+			@media screen and (max-width: 975px)
+				display: block
+
+		.mobile-nav
+			margin: -20px 0 0 0
+
 			
 
 		//Content-Left für Info
 		.left-content
 			flex: 3 1 0%
 			background-color: $rgba-green
-			min-height: 92.2vh
-			max-height: 92.2vh
+			min-height: 87.5vh
 			display: flex
 			flex-flow: column
 
@@ -156,38 +202,52 @@ body
 
 
 			.top-content
-				flex: 3.5 1 0%
+				//flex: 3.5 1 0%
+				flex: 1 100%
+				max-height: 70px
 				padding: 20px	
 
 
 			//für Inhalt
 			.middle-content
 				flex: 1 100%
-				max-height: 87vh
-				overflow-y: scroll	
+				//max-height: 87vh
+				//overflow-y: auto	
+				//overflow-x: hidden
 				//padding: 0 0 20px 0
 				//display: flex
 				//flex-flow: row wrap
 
+				#mobile-kontakt
+					display: none
+
+					@media screen and (max-width: 975px)
+						display: block
+
 			//Content-Left für Fotos
-			.bottom-content
+			.slider-content
 				flex: 1 100%
-				width: 100%
+				//width: 100%
 				max-height: 170px
+				//min-height: 170px
 				align-self: flex-end
 				border-top: 1px solid $white
+				position:  relative
 				//z-index: 83
 				//text-align: center
 				display: flex
 				flex-flow: row wrap
 				justify-content: center
+				overflow: auto
+
+				
 
 				.photo
 					flex: 1 100%
 					//display: inline-block
-					max-height: 169px
-					min-height: 169px
-					max-width: 169px
+					max-height: 170px
+					min-height: 1170px
+					max-width: 170px
 					//max-width: 174.5px
 					//min-width: 174.5px
 					margin: 0
@@ -200,19 +260,12 @@ body
 						height: 100%
 						width: auto
 
-				.photo:hover
-					transform: scale(2)
-
-				//Media for Photo
-				@media screen and (max-width: 800px)
-					max-height: 100%
-					max-width: auto
 
 
 		
 		.right-content
 			flex: 1 1 0%
-			min-height: 92.2vh
+			min-height: 87.5vh
 			border-left: 2px solid $white
 			//background-color: $lightgreen
 			//max-width: 450px
@@ -225,28 +278,36 @@ body
 			.top-content, #map
 				flex: 1 100%
 				max-height: 425px
-				min-height: 425px
-				min-width: 425px
 				max-width: 425px
-				overflow: hidden
+				overflow: auto
 
-				img
-					max-height: inherit
-					width: auto
+				display: flex
+				flex-flow: row wrap
 
+				.photo
+					flex: 1 100%
+					max-height: 425px
+					min-height: 425px
+					max-width: 425px
+					overflow: hidden
+
+					img 
+						height: inherit
+						width: auto
 			//Content-Right für Foto
 			#map
+				min-height: 425px
+				min-width: 425px
 				border-bottom: 1px solid $white
+
+			@media screen and (max-width: 975px)
+				display: none
 				
 
 
 	.default-footer
-		//align-self: flex-end
-		//flex: 1 100%
-		width: 100%
-		position: fixed
-		bottom: 0
-		left: 0
+		align-self: flex-end
+		flex: 1 100%
 		max-height: 50px
 		margin: 0
 		padding: 2px
