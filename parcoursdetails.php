@@ -6,16 +6,19 @@
 
 <?php $db = new PDO('pgsql:host=localhost;user=postgres;dbname=postgres');
 
-$statement = $db->prepare('select parcours.*, photos.* left join photos on parcours.id = photos.parcours_id where parcours.id=?');
+$statement = $db->prepare('select * from parcours WHERE parcours.id=?');
+$photo_statement = $db->prepare('select * from photos WHERE photos.parcours_id=?');
 
 $statement->execute([$_GET['id']]); 
 
 
-foreach($statement->fetchAll() as $row ) {?>
+$row = $statement->fetch();
+
+?>
 
 
 
-<div class="top-content">
+	<div class="top-content">
 		<h3><?php echo $row['name'];?></h3>
 	</div> <!--End top-content-->
 	<div class="middle-content">
@@ -68,15 +71,21 @@ foreach($statement->fetchAll() as $row ) {?>
 		</table>
 
 	</div><!--End middle-content-->
-	<div class="bottom-content">
-		<div class="photo">
-			<?php echo '<img src="assets/pic/parcours/' .$row['photo_name']. '">';?>
-		</div>
-	</div><!--End bottom-content-->
+	<div class="slider-content">	
+		
+	</div><!--End slider-content-->
 	
 	</div><!--End left-content-->
 	<div class="right-content">
 		<div class="top-content">
+		<?php
+			$photo_statement->execute([$_GET['id']]); 
+			foreach ($photo_statement->fetchAll() as $photo) {?>
+				<div class="photo">
+					<?php echo '<img src="assets/pic/parcours/' .$photo['photo_name']. '.jpg">';?>
+			
+				</div>
+		<?php }  ?>
 		</div>
 		<div id="map">
 		</div>
@@ -93,11 +102,11 @@ foreach($statement->fetchAll() as $row ) {?>
        				});
       			}
   			</script> 
-  			<?php $key = 'AIzaSyBsBa8cV_0PITCmCqa25Znf1AriLKiv5xk';?>
-  			<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo $key;?>&callback=initMap"></script>
+  			<?php $key = '';?>
+  			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsBa8cV_0PITCmCqa25Znf1AriLKiv5xk&callback=initMap"></script>
 
 		
 	</div>
-	<?php } ?>
+	<?php  ?>
 
 <?php require_once('footer.php'); ?>
